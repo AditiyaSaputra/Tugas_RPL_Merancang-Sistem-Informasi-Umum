@@ -1,0 +1,326 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Class Diagram - Class Diagram1</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		TugasMinggu10	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			Class Diagram - Class Diagram1		</span>
+<a onclick="javascript: showVpLink('TugasMinggu10.vpp://diagram/Y1eHRdGAUZQCIw2V', 'Class Diagram1\nTugasMinggu10.vpp://diagram/Y1eHRdGAUZQCIw2V', 'Class Diagram1', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|2.0|611.0|118.0|98.0|Class_MQA3RdGAUZQCIw7x.html|Class_MQA3RdGAUZQCIw7x.html|MQA3RdGAUZQCIw7w" id="optionMQA3RdGAUZQCIw7w">Materi : Class</option>
+<option value="shape|160.0|618.0|118.0|66.0|Class_uONHRdGAUZQCIw3h.html|Class_uONHRdGAUZQCIw3h.html|uONHRdGAUZQCIw3g" id="optionuONHRdGAUZQCIw3g">Nilai : Class</option>
+<option value="shape|318.0|573.0|118.0|64.0|Class_Il1HRdGAUZQCIw3b.html|Class_Il1HRdGAUZQCIw3b.html|Il1HRdGAUZQCIw3a" id="optionIl1HRdGAUZQCIw3a">Absensi : Class</option>
+<option value="shape|135.0|410.0|130.0|98.0|Class_rzlHRdGAUZQCIw3S.html|Class_rzlHRdGAUZQCIw3S.html|LzlHRdGAUZQCIw3R" id="optionLzlHRdGAUZQCIw3R">Mata Kuliah : Class</option>
+<option value="shape|478.0|188.0|139.0|148.0|Class_Ub5HRdGAUZQCIw3J.html|Class_Ub5HRdGAUZQCIw3J.html|Ub5HRdGAUZQCIw3I" id="optionUb5HRdGAUZQCIw3I">Mahasiswa : Class</option>
+<option value="shape|205.0|188.0|158.0|163.0|Class_uRpHRdGAUZQCIw2_.html|Class_uRpHRdGAUZQCIw2_.html|ORpHRdGAUZQCIw29" id="optionORpHRdGAUZQCIw29">Dosen : Class</option>
+<option value="shape|301.0|2.0|177.0|98.0|Class_ZT_HRdGAUZQCIw2p.html|Class_ZT_HRdGAUZQCIw2p.html|JT.HRdGAUZQCIw2o" id="optionJT.HRdGAUZQCIw2o">Sistem Manajemen Eldoro : Class</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Class_Diagram1.png" usemap="#diagram_map" class="Image" width="743" height="794"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="308.0, 100.0, 308.0, 188.0, 322.0, 188.0, 322.0, 100.0" coords2="308.0, 100.0, 308.0, 188.0, 322.0, 188.0, 322.0, 100.0" shape="poly" alt="Doosen Bagian dari Sistem:Association" id="areadiagram_map_Fk3HRdGAUZQCIw4s_default" href="Association_2k3HRdGAUZQCIw4n.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="554.0, 41.0, 554.0, 44.0, 478.0, 44.0, 478.0, 58.0, 554.0, 58.0, 554.0, 188.0, 568.0, 188.0, 568.0, 58.0, 571.0, 58.0, 571.0, 44.0, 568.0, 44.0, 568.0, 41.0" coords2="554.0, 41.0, 554.0, 44.0, 478.0, 44.0, 478.0, 58.0, 554.0, 58.0, 554.0, 188.0, 568.0, 188.0, 568.0, 58.0, 571.0, 58.0, 571.0, 44.0, 568.0, 44.0, 568.0, 41.0" shape="poly" alt="Mahasiswa Bagian dari Sistem:Association" id="areadiagram_map_Hd_HRdGAUZQCIw46_default" href="Association_Vd_HRdGAUZQCIw41.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="363.0, 227.0, 363.0, 241.0, 478.0, 241.0, 478.0, 227.0" coords2="363.0, 227.0, 363.0, 241.0, 478.0, 241.0, 478.0, 227.0" shape="poly" alt="dosen pengajar:Association" id="areadiagram_map_J45nRdGAUZQCIw6L_default" href="Association_K45nRdGAUZQCIw6G.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="226.0, 351.0, 226.0, 410.0, 240.0, 410.0, 240.0, 351.0" coords2="226.0, 351.0, 226.0, 410.0, 240.0, 410.0, 240.0, 351.0" shape="poly" alt="Buat Mata Kuliah:Association" id="areadiagram_map_VGtXRdGAUZQCIw7G_default" href="Association_uGtXRdGAUZQCIw7B.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="211.0, 508.0, 211.0, 618.0, 225.0, 618.0, 225.0, 508.0" coords2="211.0, 508.0, 211.0, 618.0, 225.0, 618.0, 225.0, 508.0" shape="poly" alt="bagian mk 2:Association" id="areadiagram_map_VgnXRdGAUZQCIw7d_default" href="Association_2gnXRdGAUZQCIw7Y.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="370.0, 463.0, 370.0, 466.0, 265.0, 466.0, 265.0, 480.0, 370.0, 480.0, 370.0, 573.0, 384.0, 573.0, 384.0, 480.0, 387.0, 480.0, 387.0, 466.0, 384.0, 466.0, 384.0, 463.0" coords2="370.0, 463.0, 370.0, 466.0, 265.0, 466.0, 265.0, 480.0, 370.0, 480.0, 370.0, 573.0, 384.0, 573.0, 384.0, 480.0, 387.0, 480.0, 387.0, 466.0, 384.0, 466.0, 384.0, 463.0" shape="poly" alt="bagian mk 3:Association" id="areadiagram_map_YRXXRdGAUZQCIw7o_default" href="Association_HhXXRdGAUZQCIw7j.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="53.0, 463.0, 53.0, 466.0, 50.0, 466.0, 50.0, 480.0, 53.0, 480.0, 53.0, 611.0, 67.0, 611.0, 67.0, 480.0, 135.0, 480.0, 135.0, 466.0, 67.0, 466.0, 67.0, 463.0" coords2="53.0, 463.0, 53.0, 466.0, 50.0, 466.0, 50.0, 480.0, 53.0, 480.0, 53.0, 611.0, 67.0, 611.0, 67.0, 480.0, 135.0, 480.0, 135.0, 466.0, 67.0, 466.0, 67.0, 463.0" shape="poly" alt="bagian mk 1:Association" id="areadiagram_map_jQY3RdGAUZQCIw8V_default" href="Association_VQY3RdGAUZQCIw8Q.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="600.0, 336.0, 600.0, 783.0, 67.0, 783.0, 67.0, 709.0, 53.0, 709.0, 53.0, 783.0, 50.0, 783.0, 50.0, 797.0, 53.0, 797.0, 53.0, 800.0, 67.0, 800.0, 67.0, 797.0, 600.0, 797.0, 600.0, 800.0, 614.0, 800.0, 614.0, 797.0, 617.0, 797.0, 617.0, 783.0, 614.0, 783.0, 614.0, 336.0" coords2="600.0, 336.0, 600.0, 783.0, 67.0, 783.0, 67.0, 709.0, 53.0, 709.0, 53.0, 783.0, 50.0, 783.0, 50.0, 797.0, 53.0, 797.0, 53.0, 800.0, 67.0, 800.0, 67.0, 797.0, 600.0, 797.0, 600.0, 800.0, 614.0, 800.0, 614.0, 797.0, 617.0, 797.0, 617.0, 783.0, 614.0, 783.0, 614.0, 336.0" shape="poly" alt="mhs akses materi:Association" id="areadiagram_map_o303RdGAUZQCIw8f_default" href="Association_HX03RdGAUZQCIw8a.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="539.0, 336.0, 539.0, 738.0, 231.0, 738.0, 231.0, 684.0, 217.0, 684.0, 217.0, 738.0, 214.0, 738.0, 214.0, 752.0, 217.0, 752.0, 217.0, 755.0, 231.0, 755.0, 231.0, 752.0, 539.0, 752.0, 539.0, 755.0, 553.0, 755.0, 553.0, 752.0, 556.0, 752.0, 556.0, 738.0, 553.0, 738.0, 553.0, 336.0" coords2="539.0, 336.0, 539.0, 738.0, 231.0, 738.0, 231.0, 684.0, 217.0, 684.0, 217.0, 738.0, 214.0, 738.0, 214.0, 752.0, 217.0, 752.0, 217.0, 755.0, 231.0, 755.0, 231.0, 752.0, 539.0, 752.0, 539.0, 755.0, 553.0, 755.0, 553.0, 752.0, 556.0, 752.0, 556.0, 738.0, 553.0, 738.0, 553.0, 336.0" shape="poly" alt="mhs lihat nilai:Association" id="areadiagram_map_S783RdGAUZQCIw8t_default" href="Association_o783RdGAUZQCIw8o.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="489.0, 336.0, 489.0, 691.0, 383.0, 691.0, 383.0, 637.0, 369.0, 637.0, 369.0, 691.0, 366.0, 691.0, 366.0, 705.0, 369.0, 705.0, 369.0, 708.0, 383.0, 708.0, 383.0, 705.0, 489.0, 705.0, 489.0, 708.0, 503.0, 708.0, 503.0, 705.0, 506.0, 705.0, 506.0, 691.0, 503.0, 691.0, 503.0, 336.0" coords2="489.0, 336.0, 489.0, 691.0, 383.0, 691.0, 383.0, 637.0, 369.0, 637.0, 369.0, 691.0, 366.0, 691.0, 366.0, 705.0, 369.0, 705.0, 369.0, 708.0, 383.0, 708.0, 383.0, 705.0, 489.0, 705.0, 489.0, 708.0, 503.0, 708.0, 503.0, 705.0, 506.0, 705.0, 506.0, 691.0, 503.0, 691.0, 503.0, 336.0" shape="poly" alt="mhs akses absensi:Association" id="areadiagram_map_SEy3RdGAUZQCIw87_default" href="Association_YEy3RdGAUZQCIw82.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="2, 611, 120, 709" coords2="2, 611, 120, 709" shape="rect" alt="Materi:Class" id="areadiagram_map_MQA3RdGAUZQCIw7w_default" href="Class_MQA3RdGAUZQCIw7x.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="160, 618, 278, 684" coords2="160, 618, 278, 684" shape="rect" alt="Nilai:Class" id="areadiagram_map_uONHRdGAUZQCIw3g_default" href="Class_uONHRdGAUZQCIw3h.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="318, 573, 436, 637" coords2="318, 573, 436, 637" shape="rect" alt="Absensi:Class" id="areadiagram_map_Il1HRdGAUZQCIw3a_default" href="Class_Il1HRdGAUZQCIw3b.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="135, 410, 265, 508" coords2="135, 410, 265, 508" shape="rect" alt="Mata Kuliah:Class" id="areadiagram_map_LzlHRdGAUZQCIw3R_default" href="Class_rzlHRdGAUZQCIw3S.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="478, 188, 617, 336" coords2="478, 188, 617, 336" shape="rect" alt="Mahasiswa:Class" id="areadiagram_map_Ub5HRdGAUZQCIw3I_default" href="Class_Ub5HRdGAUZQCIw3J.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="205, 188, 363, 351" coords2="205, 188, 363, 351" shape="rect" alt="Dosen:Class" id="areadiagram_map_ORpHRdGAUZQCIw29_default" href="Class_uRpHRdGAUZQCIw2_.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="301, 2, 478, 100" coords2="301, 2, 478, 100" shape="rect" alt="Sistem Manajemen Eldoro:Class" id="areadiagram_map_JT.HRdGAUZQCIw2o_default" href="Class_ZT_HRdGAUZQCIw2p.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+				Model Elements			</td>
+		</tr>
+		<tr>
+			<td style="height: 5px">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="4" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="30%">
+<span class="TableHeaderText">Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Class.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Class.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Class_MQA3RdGAUZQCIw7x.html" class="ItemLink">Materi : Class</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Class.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Class.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Class_uONHRdGAUZQCIw3h.html" class="ItemLink">Nilai : Class</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Class.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Class.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Class_Il1HRdGAUZQCIw3b.html" class="ItemLink">Absensi : Class</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Class.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Class.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Class_rzlHRdGAUZQCIw3S.html" class="ItemLink">Mata Kuliah : Class</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Class.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Class.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Class_Ub5HRdGAUZQCIw3J.html" class="ItemLink">Mahasiswa : Class</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Class.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Class.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Class_uRpHRdGAUZQCIw2_.html" class="ItemLink">Dosen : Class</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Class.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Class.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Class_ZT_HRdGAUZQCIw2p.html" class="ItemLink">Sistem Manajemen Eldoro : Class</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		TugasMinggu10	</div>
+</body>
+</html>

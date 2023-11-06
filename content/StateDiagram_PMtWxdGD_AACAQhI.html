@@ -1,0 +1,349 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>State Machine Diagram - State Machine Diagram1</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		TugasMinggu10	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			State Machine Diagram - State Machine Diagram1		</span>
+<a onclick="javascript: showVpLink('TugasMinggu10.vpp://diagram/PMtWxdGD.AACAQhI', 'State Machine Diagram1\nTugasMinggu10.vpp://diagram/PMtWxdGD.AACAQhI', 'State Machine Diagram1', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|129.0|460.0|20.0|20.0|FinalState2_FPjOxdGD_AACAQrz.html|FinalState2_FPjOxdGD_AACAQrz.html|FPjOxdGD.AACAQry" id="optionFPjOxdGD.AACAQry">end : Final State</option>
+<option value="shape|252.0|240.0|166.0|59.0|State2_O_JOxdGD_AACAQrF.html|State2_O_JOxdGD_AACAQrF.html|2.JOxdGD.AACAQrE" id="option2.JOxdGD.AACAQrE">berada pada halaman jadwal mata kuliah : State</option>
+<option value="shape|520.0|420.0|150.0|40.0|State2_sRiOxdGD_AACAQqU.html|State2_sRiOxdGD_AACAQqU.html|sRiOxdGD.AACAQqT" id="optionsRiOxdGD.AACAQqT">berada pada halaman materi mata kuliah : State</option>
+<option value="shape|576.0|266.0|174.0|56.0|State2_x222xdGD_AACAQoV.html|State2_x222xdGD_AACAQoV.html|x222xdGD.AACAQoU" id="optionx222xdGD.AACAQoU">berada pada halaman mata kuliah tertentu : State</option>
+<option value="shape|707.0|420.0|171.0|40.0|State2_DFi2xdGD_AACAQoM.html|State2_DFi2xdGD_AACAQoM.html|9Fi2xdGD.AACAQoL" id="option9Fi2xdGD.AACAQoL">berada pada halaman absen : State</option>
+<option value="shape|590.0|106.0|145.0|56.0|State2_Ou_WxdGD_AACAQnL.html|State2_Ou_WxdGD_AACAQnL.html|Ou_WxdGD.AACAQnK" id="optionOu_WxdGD.AACAQnK">berada pada halaman list mata kuliah : State</option>
+<option value="shape|261.0|114.0|149.0|40.0|State2_HNHWxdGD_AACAQmj.html|State2_HNHWxdGD_AACAQmj.html|7NHWxdGD.AACAQmi" id="option7NHWxdGD.AACAQmi">berada pada halaman beranda : State</option>
+<option value="shape|129.0|124.0|20.0|20.0|InitialPseudoState_iqtWxdGD_AACAQhc.html|InitialPseudoState_iqtWxdGD_AACAQhc.html|8qtWxdGD.AACAQhb" id="option8qtWxdGD.AACAQhb">start : Initial Pseudo State</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/State_Machine_Diagram1.png" usemap="#diagram_map" class="Image" width="993" height="673"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="149.0, 127.0, 149.0, 141.0, 261.0, 141.0, 261.0, 127.0" coords2="149.0, 127.0, 149.0, 141.0, 261.0, 141.0, 261.0, 127.0" shape="poly" alt="login:Transition" id="areadiagram_map_fYvWxdGD.AACAQm6_default" href="Transition2_HYvWxdGD_AACAQm5.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="410.0, 126.0, 410.0, 140.0, 590.0, 140.0, 590.0, 126.0" coords2="410.0, 126.0, 410.0, 140.0, 590.0, 140.0, 590.0, 126.0" shape="poly" alt="memilih halaman mata kuliah:Transition" id="areadiagram_map_j3E2xdGD.AACAQnj_default" href="Transition2_Z3E2xdGD_AACAQni.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="695.0, 162.0, 695.0, 266.0, 709.0, 266.0, 709.0, 162.0" coords2="695.0, 162.0, 695.0, 266.0, 709.0, 266.0, 709.0, 162.0" shape="poly" alt="memilih mata kuliah:Transition" id="areadiagram_map_O.Z2xdGD.AACAQoz_default" href="Transition2_S_Z2xdGD_AACAQoy.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="616.0, 162.0, 616.0, 266.0, 630.0, 266.0, 630.0, 162.0" coords2="616.0, 162.0, 616.0, 266.0, 630.0, 266.0, 630.0, 162.0" shape="poly" alt="kembali:Transition" id="areadiagram_map_S1F2xdGD.AACAQo7_default" href="Transition2_01F2xdGD_AACAQo6.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="796.0, 259.0, 796.0, 262.0, 738.0, 262.0, 738.0, 266.0, 750.0, 266.0, 750.0, 276.0, 796.0, 276.0, 796.0, 297.0, 750.0, 297.0, 750.0, 311.0, 796.0, 311.0, 796.0, 314.0, 810.0, 314.0, 810.0, 311.0, 813.0, 311.0, 813.0, 297.0, 810.0, 297.0, 810.0, 276.0, 813.0, 276.0, 813.0, 262.0, 810.0, 262.0, 810.0, 259.0" coords2="796.0, 259.0, 796.0, 262.0, 738.0, 262.0, 738.0, 266.0, 750.0, 266.0, 750.0, 276.0, 796.0, 276.0, 796.0, 297.0, 750.0, 297.0, 750.0, 311.0, 796.0, 311.0, 796.0, 314.0, 810.0, 314.0, 810.0, 311.0, 813.0, 311.0, 813.0, 297.0, 810.0, 297.0, 810.0, 276.0, 813.0, 276.0, 813.0, 262.0, 810.0, 262.0, 810.0, 259.0" shape="poly" alt=":Transition" id="areadiagram_map_KXV2xdGD.AACAQpF_default" href="Transition2_0XV2xdGD_AACAQpE.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="735.0, 322.0, 735.0, 420.0, 749.0, 420.0, 749.0, 322.0" coords2="735.0, 322.0, 735.0, 420.0, 749.0, 420.0, 749.0, 322.0" shape="poly" alt="klik absen mata kuliah:Transition" id="areadiagram_map_daAOxdGD.AACAQpd_default" href="Transition2_JaAOxdGD_AACAQpc.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="712.0, 322.0, 712.0, 420.0, 726.0, 420.0, 726.0, 322.0" coords2="712.0, 322.0, 712.0, 420.0, 726.0, 420.0, 726.0, 322.0" shape="poly" alt="kembali:Transition" id="areadiagram_map_J0cOxdGD.AACAQqD_default" href="Transition2_O0cOxdGD_AACAQqC.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="595.0, 322.0, 595.0, 420.0, 609.0, 420.0, 609.0, 322.0" coords2="595.0, 322.0, 595.0, 420.0, 609.0, 420.0, 609.0, 322.0" shape="poly" alt="klik lihat materi:Transition" id="areadiagram_map_6H2OxdGD.AACAQqk_default" href="Transition2_cH2OxdGD_AACAQqj.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="576.0, 322.0, 576.0, 420.0, 590.0, 420.0, 590.0, 322.0" coords2="576.0, 322.0, 576.0, 420.0, 590.0, 420.0, 590.0, 322.0" shape="poly" alt="kembali:Transition" id="areadiagram_map_w1BOxdGD.AACAQq2_default" href="Transition2_XVBOxdGD_AACAQq1.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="356.0, 154.0, 356.0, 240.0, 370.0, 240.0, 370.0, 154.0" coords2="356.0, 154.0, 356.0, 240.0, 370.0, 240.0, 370.0, 154.0" shape="poly" alt="klik cek jadwal:Transition" id="areadiagram_map_k3VOxdGD.AACAQrP_default" href="Transition2_A3VOxdGD_AACAQrO.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="297.0, 154.0, 297.0, 240.0, 311.0, 240.0, 311.0, 154.0" coords2="297.0, 154.0, 297.0, 240.0, 311.0, 240.0, 311.0, 154.0" shape="poly" alt="kembali:Transition" id="areadiagram_map_E1NOxdGD.AACAQrV_default" href="Transition2_fVNOxdGD_AACAQrU.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="796.0, 460.0, 796.0, 586.0, 146.0, 586.0, 146.0, 480.0, 132.0, 480.0, 132.0, 586.0, 129.0, 586.0, 129.0, 600.0, 132.0, 600.0, 132.0, 603.0, 146.0, 603.0, 146.0, 600.0, 796.0, 600.0, 796.0, 603.0, 810.0, 603.0, 810.0, 600.0, 813.0, 600.0, 813.0, 586.0, 810.0, 586.0, 810.0, 460.0" coords2="796.0, 460.0, 796.0, 586.0, 146.0, 586.0, 146.0, 480.0, 132.0, 480.0, 132.0, 586.0, 129.0, 586.0, 129.0, 600.0, 132.0, 600.0, 132.0, 603.0, 146.0, 603.0, 146.0, 600.0, 796.0, 600.0, 796.0, 603.0, 810.0, 603.0, 810.0, 600.0, 813.0, 600.0, 813.0, 586.0, 810.0, 586.0, 810.0, 460.0" shape="poly" alt="keluar:Transition" id="areadiagram_map_y2guxdGD.AACAQsT_default" href="Transition2_E2guxdGD_AACAQsS.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="565.0, 460.0, 565.0, 463.0, 149.0, 463.0, 149.0, 477.0, 565.0, 477.0, 565.0, 480.0, 579.0, 480.0, 579.0, 477.0, 582.0, 477.0, 582.0, 463.0, 579.0, 463.0, 579.0, 460.0" coords2="565.0, 460.0, 565.0, 463.0, 149.0, 463.0, 149.0, 477.0, 565.0, 477.0, 565.0, 480.0, 579.0, 480.0, 579.0, 477.0, 582.0, 477.0, 582.0, 463.0, 579.0, 463.0, 579.0, 460.0" shape="poly" alt="keluar:Transition" id="areadiagram_map_GaOuxdGD.AACAQtf_default" href="Transition2_8aOuxdGD_AACAQte.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="475.0, 285.0, 475.0, 288.0, 472.0, 288.0, 472.0, 302.0, 475.0, 302.0, 475.0, 428.0, 146.0, 428.0, 146.0, 425.0, 132.0, 425.0, 132.0, 428.0, 129.0, 428.0, 129.0, 442.0, 132.0, 442.0, 132.0, 460.0, 146.0, 460.0, 146.0, 442.0, 475.0, 442.0, 475.0, 445.0, 489.0, 445.0, 489.0, 442.0, 492.0, 442.0, 492.0, 428.0, 489.0, 428.0, 489.0, 302.0, 576.0, 302.0, 576.0, 288.0, 489.0, 288.0, 489.0, 285.0" coords2="475.0, 285.0, 475.0, 288.0, 472.0, 288.0, 472.0, 302.0, 475.0, 302.0, 475.0, 428.0, 146.0, 428.0, 146.0, 425.0, 132.0, 425.0, 132.0, 428.0, 129.0, 428.0, 129.0, 442.0, 132.0, 442.0, 132.0, 460.0, 146.0, 460.0, 146.0, 442.0, 475.0, 442.0, 475.0, 445.0, 489.0, 445.0, 489.0, 442.0, 492.0, 442.0, 492.0, 428.0, 489.0, 428.0, 489.0, 302.0, 576.0, 302.0, 576.0, 288.0, 489.0, 288.0, 489.0, 285.0" shape="poly" alt="keluar:Transition" id="areadiagram_map_lv5uxdGD.AACAQt7_default" href="Transition2_Bv5uxdGD_AACAQt6.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="68.0, 282.0, 68.0, 285.0, 65.0, 285.0, 65.0, 299.0, 68.0, 299.0, 68.0, 463.0, 65.0, 463.0, 65.0, 477.0, 68.0, 477.0, 68.0, 480.0, 82.0, 480.0, 82.0, 477.0, 129.0, 477.0, 129.0, 463.0, 82.0, 463.0, 82.0, 299.0, 252.0, 299.0, 252.0, 285.0, 82.0, 285.0, 82.0, 282.0" coords2="68.0, 282.0, 68.0, 285.0, 65.0, 285.0, 65.0, 299.0, 68.0, 299.0, 68.0, 463.0, 65.0, 463.0, 65.0, 477.0, 68.0, 477.0, 68.0, 480.0, 82.0, 480.0, 82.0, 477.0, 129.0, 477.0, 129.0, 463.0, 82.0, 463.0, 82.0, 299.0, 252.0, 299.0, 252.0, 285.0, 82.0, 285.0, 82.0, 282.0" shape="poly" alt="keluar:Transition" id="areadiagram_map_XSHuxdGD.AACAQue_default" href="Transition2_dSHuxdGD_AACAQud.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="-5.0, -8.0, -5.0, -5.0, -8.0, -5.0, -8.0, 9.0, -5.0, 9.0, -5.0, 463.0, -8.0, 463.0, -8.0, 477.0, -5.0, 477.0, -5.0, 480.0, 9.0, 480.0, 9.0, 477.0, 129.0, 477.0, 129.0, 463.0, 9.0, 463.0, 9.0, 9.0, 290.0, 9.0, 290.0, 114.0, 304.0, 114.0, 304.0, 9.0, 307.0, 9.0, 307.0, -5.0, 304.0, -5.0, 304.0, -8.0, 290.0, -8.0, 290.0, -5.0, 9.0, -5.0, 9.0, -8.0" coords2="-5.0, -8.0, -5.0, -5.0, -8.0, -5.0, -8.0, 9.0, -5.0, 9.0, -5.0, 463.0, -8.0, 463.0, -8.0, 477.0, -5.0, 477.0, -5.0, 480.0, 9.0, 480.0, 9.0, 477.0, 129.0, 477.0, 129.0, 463.0, 9.0, 463.0, 9.0, 9.0, 290.0, 9.0, 290.0, 114.0, 304.0, 114.0, 304.0, 9.0, 307.0, 9.0, 307.0, -5.0, 304.0, -5.0, 304.0, -8.0, 290.0, -8.0, 290.0, -5.0, 9.0, -5.0, 9.0, -8.0" shape="poly" alt="keluar:Transition" id="areadiagram_map_PVQexdGD.AACAQvB_default" href="Transition2_zVQexdGD_AACAQvA.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="971.0, 117.0, 971.0587, 120.0, 735.0, 120.0, 735.0, 134.0, 971.33276, 134.0, 981.66724, 662.0, 145.08095, 662.0, 145.94762, 480.0, 131.94762, 480.0, 131.08095, 662.0, 128.0, 662.0, 128.0, 676.0, 131.01428, 676.0, 131.0, 679.0, 145.0, 679.0, 145.01428, 676.0, 981.9413, 676.0, 982.0, 679.0, 996.0, 679.0, 995.9413, 676.0, 999.0, 676.0, 999.0, 662.0, 995.66724, 662.0, 985.33276, 134.0, 988.0, 134.0, 988.0, 120.0, 985.0587, 120.0, 985.0, 117.0" coords2="971.0, 117.0, 971.0587, 120.0, 735.0, 120.0, 735.0, 134.0, 971.33276, 134.0, 981.66724, 662.0, 145.08095, 662.0, 145.94762, 480.0, 131.94762, 480.0, 131.08095, 662.0, 128.0, 662.0, 128.0, 676.0, 131.01428, 676.0, 131.0, 679.0, 145.0, 679.0, 145.01428, 676.0, 981.9413, 676.0, 982.0, 679.0, 996.0, 679.0, 995.9413, 676.0, 999.0, 676.0, 999.0, 662.0, 995.66724, 662.0, 985.33276, 134.0, 988.0, 134.0, 988.0, 120.0, 985.0587, 120.0, 985.0, 117.0" shape="poly" alt="keluar:Transition" id="areadiagram_map_L3kexdGD.AACAQvV_default" href="Transition2_13kexdGD_AACAQvU.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="129, 460, 149, 480" coords2="129, 460, 149, 480" shape="rect" alt="end:Final State" id="areadiagram_map_FPjOxdGD.AACAQry_default" href="FinalState2_FPjOxdGD_AACAQrz.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="252, 240, 418, 299" coords2="252, 240, 418, 299" shape="rect" alt="berada pada halaman jadwal mata kuliah:State" id="areadiagram_map_2.JOxdGD.AACAQrE_default" href="State2_O_JOxdGD_AACAQrF.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="520, 420, 670, 460" coords2="520, 420, 670, 460" shape="rect" alt="berada pada halaman materi mata kuliah:State" id="areadiagram_map_sRiOxdGD.AACAQqT_default" href="State2_sRiOxdGD_AACAQqU.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="576, 266, 750, 322" coords2="576, 266, 750, 322" shape="rect" alt="berada pada halaman mata kuliah tertentu:State" id="areadiagram_map_x222xdGD.AACAQoU_default" href="State2_x222xdGD_AACAQoV.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="707, 420, 878, 460" coords2="707, 420, 878, 460" shape="rect" alt="berada pada halaman absen:State" id="areadiagram_map_9Fi2xdGD.AACAQoL_default" href="State2_DFi2xdGD_AACAQoM.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="590, 106, 735, 162" coords2="590, 106, 735, 162" shape="rect" alt="berada pada halaman list mata kuliah:State" id="areadiagram_map_Ou_WxdGD.AACAQnK_default" href="State2_Ou_WxdGD_AACAQnL.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="261, 114, 410, 154" coords2="261, 114, 410, 154" shape="rect" alt="berada pada halaman beranda:State" id="areadiagram_map_7NHWxdGD.AACAQmi_default" href="State2_HNHWxdGD_AACAQmj.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="129, 124, 149, 144" coords2="129, 124, 149, 144" shape="rect" alt="start:Initial Pseudo State" id="areadiagram_map_8qtWxdGD.AACAQhb_default" href="InitialPseudoState_iqtWxdGD_AACAQhc.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+				Model Elements			</td>
+		</tr>
+		<tr>
+			<td style="height: 5px">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="4" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="30%">
+<span class="TableHeaderText">Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/FinalState.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/FinalState.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="FinalState2_FPjOxdGD_AACAQrz.html" class="ItemLink">end : Final State</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/State.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/State.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="State2_O_JOxdGD_AACAQrF.html" class="ItemLink">berada pada halaman jadwal mata kuliah : State</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/State.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/State.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="State2_sRiOxdGD_AACAQqU.html" class="ItemLink">berada pada halaman materi mata kuliah : State</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/State.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/State.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="State2_x222xdGD_AACAQoV.html" class="ItemLink">berada pada halaman mata kuliah tertentu : State</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/State.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/State.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="State2_DFi2xdGD_AACAQoM.html" class="ItemLink">berada pada halaman absen : State</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/State.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/State.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="State2_Ou_WxdGD_AACAQnL.html" class="ItemLink">berada pada halaman list mata kuliah : State</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/State.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/State.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="State2_HNHWxdGD_AACAQmj.html" class="ItemLink">berada pada halaman beranda : State</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/InitialPseudoState.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/InitialPseudoState.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="InitialPseudoState_iqtWxdGD_AACAQhc.html" class="ItemLink">start : Initial Pseudo State</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		TugasMinggu10	</div>
+</body>
+</html>
